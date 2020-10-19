@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
 import javax.swing.JTextField;
+import reductorARD.reductorARD;
 
 public class LectorAutomataFD {
 
@@ -70,6 +71,9 @@ public class LectorAutomataFD {
 			return false;
 		
 		if(aceptacion.length > estados)
+			return false;
+		
+		if(alfabeto.length != quintupla[0].length)
 			return false;
 		
 		for (var arreglo : automata)
@@ -152,6 +156,8 @@ public class LectorAutomataFD {
 							ArrayList<String> documento = AbrirArchivo(archivo);
 							AnalizarAutomata(documento);
 							int [][] quinta = quintupla(documento);
+							reductorARD reducto = new reductorARD();
+							reducto.ReductorAFD(quinta, documento.get(2).split(","), Integer.parseInt(documento.get(0)));
 							System.out.println(documento);
 							//textPane.setText(documento);
 						}else {
